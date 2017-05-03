@@ -8,7 +8,7 @@ I like to compile relevant notes for specific topics into a single resource for 
 
 *This is an ongoing project with lots to add, and contributions are welcome. I will probably write a very basic contribution guide shortly if enough people are interested.*
 
-Sources are appended at the end of the document for further reading.
+(Sources are appended at the end of the document for further reading.)
 
 Thanks for stopping by! -S
 https://github.com/sambgordon
