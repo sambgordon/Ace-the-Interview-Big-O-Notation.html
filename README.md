@@ -12,6 +12,7 @@ I like to compile relevant notes for specific topics into a single resource for 
 
 Thanks for stopping by! -S
 https://github.com/sambgordon
+
 http://devbysam.com/
 
 ****************
