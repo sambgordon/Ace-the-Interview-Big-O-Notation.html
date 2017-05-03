@@ -21,4 +21,4 @@ http://devbysam.com/
 
 [Best, worst and average case](https://en.wikipedia.org/wiki/Best,_worst_and_average_case)
 
-(https://www.youtube.com/watch?v=V6mKVRU1evU)[Big O Notations]
+[Big O Notations](https://www.youtube.com/watch?v=V6mKVRU1evU)
