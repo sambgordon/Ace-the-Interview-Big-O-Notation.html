@@ -15,3 +15,5 @@ Thanks for stopping by! -S
 http://devbysam.com/
 
 ****************
+
+<http://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly>(What does O(log n) mean exactly?)
