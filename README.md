@@ -14,7 +14,11 @@ http://devbysam.com/
 
 ## Sources and Further Reading
 [What does O(log n) mean exactly?](http://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly)
+
 [Examples of Algorithms which have O(1), O(n log n) and O(log n) complexities](http://stackoverflow.com/questions/1592649/examples-of-algorithms-which-has-o1-on-log-n-and-olog-n-complexities)
+
 [Closest pair of points brute-force; Why O(n^2)?](http://stackoverflow.com/questions/41705567/closest-pair-of-points-brute-force-why-on2)
-[https://en.wikipedia.org/wiki/Best,_worst_and_average_case](Best, worst and average case)
-[https://www.youtube.com/watch?v=V6mKVRU1evU](Big O Notations)
+
+[Best, worst and average case](https://en.wikipedia.org/wiki/Best,_worst_and_average_case)
+
+(https://www.youtube.com/watch?v=V6mKVRU1evU)[Big O Notations]
