@@ -44,12 +44,12 @@ http://devbysam.com/
 
 	Ex. In:
 		45n^3 + 20n^2 + 19 = 84 (assuming n=1)
-		"								"  = 459 (at n=2)
-		"		            "  = 47,019 (n = 10),
-		It can be surmised with larger inputs for n, that in
+		"		"  = 459 (at n=2)
+		"		"  = 47,019 (n = 10),
+		It can be surmised with larger inputs for n, that in:
 		45n^3 + 20n^2 + 19,
-		the 19 doesnt affect the output significantly, nor does the 20n^2, nor even the 45 in 45n^3 (because of the second
-		rule defined below), but instead the n^3 is the deciding factor in how this algorithm scales.
+		the 19 doesnt affect the output significantly, nor does the 20n^2, nor even the 45 in 45n^3 (because of the product
+		rule, defined in the next section), but instead the n^3 is the deciding factor in how this algorithm scales.
 
 3. SUM AND PRODUCT RULES:
 	<1> If f(x) is a <SUM> of several terms, if there is one with the largest growth rate, it can be kept, and all others omitted.
@@ -138,15 +138,15 @@ http://devbysam.com/
 			bubblesort(testalg3) ~ 28930 ms
 
 	O(log N)
-		a.k.a. <DIVIDE & CONQUER>
+		a.k.a. <DIVIDE AND CONQUER>
 		This is much more efficient than O(N^2).
 		This will occur when data is decreased by roughly 50% each time through the algorithm, ex.: <BINARY SEARCH>.
 		This is because, in O(log N):
 			-As N increases, the increase in log N is going to be DRAMATICALLY different and increase at a faster rate.
-			-This means that increasing the data will have little or no effect until SOME POINT early on, because the amt. of data is
-			1/2 each time.
-		The basic premise is NOT using the complete data, and reducing the problem size with every iteration (like in a phone book:
-		you don't need to linearly access every single name to find the one you're looking for.)
+			-This means that increasing the data will have little or no effect until SOME POINT early on, because the amt. 
+			of data is reduced by 1/2 each time.
+		The basic premise is NOT using the complete data, and reducing the problem size with every iteration (like in a phone 
+			book: you don't need to linearly access every single name to find the one you're looking for.)
 
 		Ex.In:
 			binary search(pseud):
@@ -182,7 +182,7 @@ http://devbysam.com/
 			Binary Search took 0 ms
 			Times through 10 ms
 
-			So it only went through 9 times to search 10,000 items, and only 10 times to search through 20,000 items.
+			(So it only went through 9 times to search 10,000 items, and only 10 times to search through 20,000 items.)
 
 	O(N log N)
 		This is the only one that is not O(N), or looks at every single element of the array exactly one time.
@@ -194,9 +194,8 @@ http://devbysam.com/
 			Comparisons = log n!
 			vvv
 			Comparisons = log n + log(n-1)+........log(1)
-														start						 end
-			vvv which simplifies down to...
-			Comparisons = n log n
+			vvv
+			Comparisons = n log n <--> This is what log n! ultimately simplifies down to.
 
 			(partitioning smaller and smaller parts of the array each time we cycle through)
 
@@ -220,7 +219,7 @@ http://devbysam.com/
 		2. Inserting a node in a linked list
 		3. Pushing and popping
 		4. Insertion and removal from queue
-		...and plenty more...
+		And plenty more...
 
 	O(N)
 		1. <LINEAR SEARCH>
@@ -253,19 +252,16 @@ http://devbysam.com/
 
 6. BEST, WORST, AND AVERAGE CASE
 
-	The best, worst, and average cases of an algorithm explain, obviously, what the resource
-	usage is at best, worst, and average.
-	This is usually considered in relation to time complexity, but could also be
-	in relation to memory usage.
+	The best, worst, and average cases of an algorithm explain, obviously, what the resource usage is at best, worst, and average.
+	This is usually considered in relation to time complexity, but could also be in relation to memory usage.
 
-	In real-time computing, the worst-case is often of particular concern since
-	it's important to know how much time might be needed in the worst case to
-	guarantee the algorithm will always finish on time.
+	In real-time computing, the worst-case is often of particular concern since it's important to know how much time might be 
+	needed in the worst case to guarantee the algorithm will always finish on time.
 
 	Worst case and average are the most used in algorithm analysis.
-  Development and choice of algorithms is rarely based on best-case performance.
+  	Development and choice of algorithms is rarely based on best-case performance [typical exceptions?]
 
-Definitions and Sister Terms (define)
+Definitions and Sister Terms [define]
 	LIMITING BEHAVIORS
 	ANALYTIC NUMBER THEORY
 	UPPER BOUND
