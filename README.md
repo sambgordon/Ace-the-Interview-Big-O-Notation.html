@@ -11,7 +11,6 @@ I like to compile relevant notes for specific topics into a single resource for 
 (Sources are appended at the end of the document for further reading.)
 
 Thanks for stopping by! -S
-https://github.com/sambgordon
 
 http://devbysam.com/
 
