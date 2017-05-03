@@ -1,0 +1,287 @@
+****************
+
+<BIG O NOTATION INTERVIEW NOTES>
+
+Compiled notes covering basics of Big O Notation; sources appended at the end.
+This is an ongoing project with lots to add, and contributions are welcome.
+Common algorithm names and central concepts are <HIGHLIGHTED> like so.
+Algorithms from Derek Banas in the Complexities section are in Java, however this document
+is pseudo, and is purely for learning purposes. Sorry if it's messy at first!
+
+Thanks for stopping by! -S
+https://github.com/sambgordon
+http://devbysam.com/
+
+****************
+
+1. SUMMARY
+	Big O - A way to measure how well a computer algorithm <SCALES> as the amount of data involved increases (i.e. how well it
+	would work with a 10 element array versus a 10,000 element array).
+
+	It's a mathematical notation that describes the <LIMITING BEHAVIOR> of a function when the argument tends toward a particular
+	value or infinity.
+
+	It's also used to classify algorithms according to how their <RUNNING TIME> or <SPACE REQUIREMENTS> (referred to typically as
+	time and space complexities, respectively) grow as the input size grows.
+	In analytic number theory, it's often used to express a bound on the difference between an arithmetical function and a better
+	understood approximation (ex. the remainder term in the prime number theorem).
+
+	Big O characterizes functions according to their growth rates. DIFFERENT FUNCTIONS WITH THE SAME GROWTH RATE MAY BE REPRESENTED
+	USING THE SAME O NOTATION!
+
+	The letter O is used b/c the growth rate of a function is also referred to as the <ORDER OF THE FUNCTION>.
+	A description of a function in terms of big O notation usually only provides an <UPPER BOUND> on the <GROWTH RATE> of the
+	function.
+
+2. CALCULATING BIG O NOTATION:
+	<1> Identify formula for algorithm complexity.
+		Lets say for example two loops with another one nested inside, than another three loops not nested:
+		2N^2 + 3N.
+	<2> Remove anything except the highest term:
+		2N^2.
+	<3> Remove all constants:
+		N^2.
+
+	Ex. In:
+		45n^3 + 20n^2 + 19 = 84 (assuming n=1)
+		"								"  = 459 (at n=2)
+		"		            "  = 47,019 (n = 10),
+		It can be surmised with larger inputs for n, that in
+		45n^3 + 20n^2 + 19,
+		the 19 doesnt affect the output significantly, nor does the 20n^2, nor even the 45 in 45n^3 (because of the second
+		rule defined below), but instead the n^3 is the deciding factor in how this algorithm scales.
+
+3. SUM AND PRODUCT RULES:
+	<1> If f(x) is a <SUM> of several terms, if there is one with the largest growth rate, it can be kept, and all others omitted.
+	<2> If f(x) is a <PRODUCT> of several factors, any constants (terms in the product that don't depend on x) can be omitted.
+
+	Ex. In:
+		f(x) = 6x^4 -2x^3 +5.
+		Simplify this using O notation, to describe its growth rate as X --> Infinity.
+
+		<1> FIRST RULE APPLIED: This function is the sum of 3 terms:
+		6x^4, -2x^3, and 5.
+			-Of these three, the one with the highest growth rate is the one with the largest exponent as a function of x.
+		<2> SECOND RULE APPLIED: 6x^4 is a product of 6 and x^4, IN WHICH THE FIRST FACTOR (6) DOES NOT DEPEND ON X.
+			-So, we're left with x^4.
+			-So,
+				f(x) = 6x^4 -2x^3 +5
+					1. f(x) is a big O of (x^4).
+					2. This can be written as f(x) = O(x^4).
+					3. The formal definition would be:
+					let f(x) = 6x^4 -2x^3 +5, and g(x) = x^4.
+
+4. BASICS OF COMPLEXITIES
+	O(1)
+		This is going to execute in the same amount of time regardless of the data (i.e. how big the array is).
+
+		Ex. In:
+			public void addItemToArray(int newItem){
+				theArray[itemsInArray++] = newItem;
+			}
+			-It doesn't matter if it's a 10,000 item array or a 5 item array, it will perform in exactly the same way.
+
+	O(N)
+		The time to complete this algorithm will grow in direct proportion to the data, ex.:<LINEAR SEARCH>,
+		because to find all vals we're looking for in such a search, we'll have to look for exactly each item in the array.
+
+		Ex. In:
+			BigO testAlg1 = new BigO(100000);
+			testAlg1.generateRandomArray();
+			BigO testAlg2 = new BigO(200000);
+ 			testAlg2.generateRandomArray();
+			BigO testAlg3 = new BigO(300000);
+ 			testAlg3.generateRandomArray();
+
+			After running full version:
+			Linear search on testAlg1 took ~ 4 ms
+			Linear search on testAlg2 took ~ 5 ms
+			Linear search on testAlg3 took ~ 18 ms
+
+			So, this is an example of an O(N) algorithm - one where the time taken increases with an increase
+			in the size of the test arrays.
+
+	O(N^2)
+		(INEFFICIENT AS HELL - at least compared to O(log n), etc. typically)
+		The time to complete will be proportionate to the SQUARE of the amount of data. ex.: <BUBBLE SORT>
+		This normally happens in algs like the bubble sort, which has nested iterations.
+		This means that in O(N^2), we will have to go through every single item again for the INNER loop.
+
+		Ex. In:
+			public void bubblesort(){
+			startTime = System.currentTimeMillis();
+
+			for(int i = arraySize - 1; i > 1; i--){
+				for(int j = 0; j <i; j~++){
+					if(theArray[j]
+					}
+				}
+			}/...
+
+			BigO testAlg1 = new BigO(10000);
+ 			testAlg1.generateRandomArray();
+			BigO testAlg2 = new BigO(20000);
+ 			testAlg2.generateRandomArray();
+			BigO testAlg3 = new BigO(30000);
+ 			testAlg3.generateRandomArray();
+			(same test arrays as before)
+
+			testAlg1.bubblesort();
+			testAlg2.bubblesort();
+			testAlg3.bubblesort();
+			//but now using bubble sort instead of lin search
+			/*We will now see a more significant difference, so in fact 10,000 will be better to use as an example
+			than 100,000 because of the exponential factor.*/
+
+			bubblesort(testalg1) ~ 362 ms
+			bubblesort(testalg2) ~ 1612 ms
+			bubblesort(testalg3) ~ 28930 ms
+
+	O(log N)
+		a.k.a. <DIVIDE & CONQUER>
+		This is much more efficient than O(N^2).
+		This will occur when data is decreased by roughly 50% each time through the algorithm, ex.: <BINARY SEARCH>.
+		This is because, in O(log N):
+			-As N increases, the increase in log N is going to be DRAMATICALLY different and increase at a faster rate.
+			-This means that increasing the data will have little or no effect until SOME POINT early on, because the amt. of data is
+			1/2 each time.
+		The basic premise is NOT using the complete data, and reducing the problem size with every iteration (like in a phone book:
+		you don't need to linearly access every single name to find the one you're looking for.)
+
+		Ex.In:
+			binary search(pseud):
+			public void binarysearch(int value){...etc}
+			startTime = System.currentTimeMillis();
+			int lowInde = 0;
+			int highIndex = arraySize - 1;
+			int timesThrough = 0;
+
+			while(lowIndex <= highIndex){
+				int middleIndex = (highIndex + lowIndex) /2;
+				//this is part that makes this algorithm efficient - cutting by 1/2 each time.
+				etc. etc.
+				}
+			}
+
+			testAlg2.bubblesort();
+			testAlg3.bubblesort();
+			//now comparing previous bubblesort alg to bin search
+
+			testAlg2.binarysearch();
+			testAlg3.binarysearch();
+
+			BubbleSort took 162 ms
+			BubbleSort took 721 ms
+
+			NOW:
+			Found match in index 96 ms
+			Binary Search took 0 ms
+			Times through = 9 ms
+
+			Found match in index 21 ms
+			Binary Search took 0 ms
+			Times through 10 ms
+
+			So it only went through 9 times to search 10,000 items, and only 10 times to search through 20,000 items.
+
+	O(N log N)
+		This is the only one that is not O(N), or looks at every single element of the array exactly one time.
+		Ex.: <QUICK SORT>; considered very efficient.
+
+		Vals are only going to be compared once.
+
+		Ex. In:
+			Comparisons = log n!
+			vvv
+			Comparisons = log n + log(n-1)+........log(1)
+														start						 end
+			vvv which simplifies down to...
+			Comparisons = n log n
+
+			(partitioning smaller and smaller parts of the array each time we cycle through)
+
+			BigO testAlg1 = new BigO(100000); <--> We can use higher vals than previous ones and time taken will be reduced.
+ 			testAlg1.generateRandomArray();
+			BigO testAlg2 = new BigO(200000);
+ 			testAlg2.generateRandomArray();
+			BigO testAlg3 = new BigO(300000);
+ 			testAlg3.generateRandomArray();
+
+			testAlg2.quicksort(0, testAlg2.itemsInArray);
+
+			at 100,000, took 41 ms
+			at 300,000, took 44 ms
+
+5. COMMON ALGORITHMS AND THEIR COMPLEXITIES:
+
+	O(1)
+		1. Accessing Array index
+			(ex. int a = ARR[5];)
+		2. Inserting a node in a linked list
+		3. Pushing and popping
+		4. Insertion and removal from queue
+		...and plenty more...
+
+	O(N)
+		1. <LINEAR SEARCH>
+		2. <BUCKET SORT>
+		3. Traversing an array
+		4. Traversing a linked list
+		5. Comparing two strings
+		6. Checking for a palindrome
+
+	O(N^2)
+		1. <BUBBLE SORT>
+		2. <INSERTION SORT>
+		3. <SELECTION SORT>
+		4. Traversing a simple 2D array
+
+	O(log N)
+		1. <BINARY SEARCH>
+		2. <FIBONACCI CALCULATING - BEST METHOD>
+		3. <DIVIDE & CONQUER>
+			Ex.: Looking up people in a phone book.
+				-You don't need to check every person in the phone book to find the right one; you can simply
+				<DIVIDE & CONQUER> by looking based on where the name is alphabetically, and in every section
+				you only need to explore a subset of the section.
+				A bigger phone book will still take a longer time, but it won't increase proportionally.
+
+	O(N log N)
+		<QUICK SORT>
+		<MERGE SORT>
+		<HEAP SORT>
+
+6. BEST, WORST, AND AVERAGE CASE
+
+	The best, worst, and average cases of an algorithm explain, obviously, what the resource
+	usage is at best, worst, and average.
+	This is usually considered in relation to time complexity, but could also be
+	in relation to memory usage.
+
+	In real-time computing, the worst-case is often of particular concern since
+	it's important to know how much time might be needed in the worst case to
+	guarantee the algorithm will always finish on time.
+
+	Worst case and average are the most used in algorithm analysis.
+  Development and choice of algorithms is rarely based on best-case performance.
+
+Definitions and Sister Terms (define)
+	LIMITING BEHAVIORS
+	ANALYTIC NUMBER THEORY
+	UPPER BOUND
+	ORDERS OF APPROXIMATION
+	SCALE ANALYSIS
+	CURVE FITTING
+	FALSE PRECISION
+	SCIENTIFIC MODELING
+	TAYLOR SERIES
+	NESTED ITERATIONS
+	AMORTIZED TIMES
+	BRUTE FORCE AND O(N^2)
+
+_____
+http://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly
+http://stackoverflow.com/questions/1592649/examples-of-algorithms-which-has-o1-on-log-n-and-olog-n-complexities
+http://stackoverflow.com/questions/41705567/closest-pair-of-points-brute-force-why-on2
+https://en.wikipedia.org/wiki/Best,_worst_and_average_case
+https://www.youtube.com/watch?v=V6mKVRU1evU
